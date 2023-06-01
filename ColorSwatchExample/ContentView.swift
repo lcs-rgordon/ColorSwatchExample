@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     
     @State var hue: Double = 350.0
+
+    // Array of values from 0.0 to 360.0 incremented by 1,0
+    let hues = Array(stride(from: 0.0, through: 360.0, by: 1.0))
     
     var complementary: Double {
         
@@ -20,15 +23,20 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            Rectangle()
-                .foregroundColor(Color(hue: hue/360.0, saturation: 80.0/100.0, brightness: 90.0/100.0))
-                .frame(width: 200, height: 200)
-            Rectangle()
-                .foregroundColor(Color(hue: complementary/360.0, saturation: 80.0/100.0, brightness: 90.0/100.0))
-                .frame(width: 200, height: 200)
+        ScrollView {
+            VStack(spacing: 0) {
+                
+                // Iterate over the array and print the values
+                ForEach(hues, id: \.self) { currentHue in
+                    let _ = print(currentHue)
+                    Rectangle()
+                        .foregroundColor(Color(hue: currentHue/360.0, saturation: 80.0/100.0, brightness: 90.0/100.0))
+                        .frame(width: 200, height: 1)
+                }
+                
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
