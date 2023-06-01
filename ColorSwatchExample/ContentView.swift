@@ -9,34 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var hue: Double = 350.0
-
     // Array of values from 0.0 to 360.0 incremented by 1,0
     let hues = Array(stride(from: 0.0, through: 360.0, by: 1.0))
-    
-    var complementary: Double {
         
-        let result = (hue + 180.0).remainder(dividingBy: 360.0)
-        print(result)
-        return result
-        
-    }
-    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                
-                // Iterate over the array and print the values
-                ForEach(hues, id: \.self) { currentHue in
-                    let _ = print(currentHue)
-                    Rectangle()
-                        .foregroundColor(Color(hue: currentHue/360.0, saturation: 80.0/100.0, brightness: 90.0/100.0))
-                        .frame(width: 200, height: 1)
-                }
-                
+        HStack(spacing: 0) {
+            
+            // Iterate over the array and print the values
+            ForEach(hues, id: \.self) { currentHue in
+                let _ = print(currentHue)
+                Rectangle()
+                    .foregroundColor(Color(hue: currentHue/360.0, saturation: 80.0/100.0, brightness: 90.0/100.0))
+                    .frame(width: 1, height: 50)
             }
-            .padding()
+            
         }
+        .padding()
     }
 }
 
